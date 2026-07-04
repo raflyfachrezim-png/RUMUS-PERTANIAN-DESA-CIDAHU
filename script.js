@@ -4,20 +4,27 @@ function formatRupiah(x) {
 
 function hitung() {
 
-  const luas = parseFloat(document.getElementById("luas").value);
-  const komoditas = document.getElementById("komoditas").value;
+  console.log("SCRIPT JALAN"); // DEBUG CEK
+
   const hasilDiv = document.getElementById("hasil");
+  const luas = document.getElementById("luas").value;
+  const komoditas = document.getElementById("komoditas").value;
 
   if (!luas || luas <= 0) {
-    hasilDiv.innerHTML = "Isi luas lahan dulu!";
+    hasilDiv.innerHTML = "ISI LUAS DULU";
+    return;
+  }
+
+  if (!database || !database[komoditas]) {
+    hasilDiv.innerHTML = "DATABASE ERROR";
     return;
   }
 
   const d = database[komoditas];
 
-  const faktor = luas / d.luasPatokan;
+  const faktor = parseFloat(luas) / d.luasPatokan;
 
-  // ===== PER MUSIM =====
+  // PER MUSIM
   const upah = d.upah * faktor;
   const produksi = d.produksi * faktor;
   const operasional = d.operasional * faktor;
@@ -30,7 +37,7 @@ function hitung() {
 
   const profitMusim = pendapatanMusim - biayaMusim;
 
-  // ===== PER TAHUN =====
+  // PER TAHUN
   const panen = d.panenTahun;
 
   const biayaTahun = biayaMusim * panen;
@@ -41,15 +48,15 @@ function hitung() {
     <h2>HASIL PERHITUNGAN</h2>
 
     <h3>🌾 PER MUSIM</h3>
-    <div class="row"><span>Biaya</span><b>${formatRupiah(biayaMusim)}</b></div>
-    <div class="row"><span>Pendapatan</span><b>${formatRupiah(pendapatanMusim)}</b></div>
-    <div class="row"><span>Profit</span><b>${formatRupiah(profitMusim)}</b></div>
+    <p>Biaya: ${formatRupiah(biayaMusim)}</p>
+    <p>Pendapatan: ${formatRupiah(pendapatanMusim)}</p>
+    <p>Profit: ${formatRupiah(profitMusim)}</p>
 
     <hr>
 
     <h3>📅 PER TAHUN (${panen}x panen)</h3>
-    <div class="row"><span>Biaya</span><b>${formatRupiah(biayaTahun)}</b></div>
-    <div class="row"><span>Pendapatan</span><b>${formatRupiah(pendapatanTahun)}</b></div>
-    <div class="row"><span>Profit</span><b>${formatRupiah(profitTahun)}</b></div>
+    <p>Biaya: ${formatRupiah(biayaTahun)}</p>
+    <p>Pendapatan: ${formatRupiah(pendapatanTahun)}</p>
+    <p>Profit: ${formatRupiah(profitTahun)}</p>
   `;
 }
