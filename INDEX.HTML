@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Pertanian SE 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>KALKULATOR PERTANIAN SE 2026</h1>
+
+  <div class="card">
+    <label>Luas Lahan (m²)</label>
+    <input type="number" id="luas">
+
+    <label>Komoditas</label>
+    <select id="komoditas">
+      <option value="Padi">Padi</option>
+      <option value="Sawi">Sawi</option>
+      <option value="Timun">Timun</option>
+      <option value="Cabe">Cabe</option>
+    </select>
+
+    <button onclick="hitung()">HITUNG</button>
+  </div>
+
+  <div id="hasil" class="card hasil"></div>
+
+</div>
+
+<div class="watermark">by. Rafly Fachrezi Desa Cidahu</div>
+
+<script src="database.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
